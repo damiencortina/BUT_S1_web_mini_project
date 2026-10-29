@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5">Ajouter un Type de Ski</h1>
+</div>
+{% endblock header %}
+
+{% block body %}
+<form action="/type-ski/add" method="post">
+    <div class="mb-3">
+        <label for="libelleType" class="form-label">Libellé du type de ski</label>
+        <input required type="text" class="form-control" id="libelleType" name="libelleType" placeholder="Saisir le libellé du type de ski">
+    </div>
+    <button type="submit" class="btn btn-primary">Valider</button>
+</form>
+{% endblock body %}

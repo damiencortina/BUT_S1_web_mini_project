@@ -1,0 +1,12 @@
+input:invalid {
+  background-color: lightgrey;
+}
+
+select, option {
+    background-color: lightgoldenrodyellow!important;
+}
+
+.custom-card-img{
+    height: 300px;
+    object-position: top;
+}

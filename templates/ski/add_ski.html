@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5">Ajouter un modèle de ski</h1>
+</div>
+{% endblock header %}
+
+{% block body %}
+<form action="/ski/add" method="post">
+  <div class="mb-3">
+    <label for="modeleSki" class="form-label">Modèle</label>
+    <input required type="text" class="form-control" id="modeleSki" name="modeleSki" placeholder="Saisir le modèle">
+  </div>
+  <div class="mb-3">
+    <label for="dateAchat" class="form-label">Date achat</label>
+    <input type="date" class="form-control" id="dateAchat" name="dateAchat">
+  </div>
+  <div class="mb-3">
+    <label for="etat" class="form-label">Etat</label>
+    <input type="text" class="form-control" id="etat" name="etat" placeholder="Saisir l'état">
+  </div>
+  <div class="mb-3">
+    <label for="prixAchat" class="form-label">Prix d'achat(€)</label>
+    <input type="number" class="form-control" id="prixAchat" name="prixAchat" placeholder="Saisir le prix d'achat">
+  </div>
+  <div class="mb-3">
+    <label for="prixLocation" class="form-label">Prix location(€)</label>
+    <input type="number" class="form-control" id="prixLocation" name="prixLocation" placeholder="Saisir le prix de location">
+  </div>
+  <div class="mb-3">
+    <label for="taille" class="form-label">Taille(cm)</label>
+    <input type="number" class="form-control" id="taille" name="taille" placeholder="Saisir la taille">
+  </div>
+  <div class="mb-3">
+    <label for="typeSki_id" class="form-label">Type de ski</label>
+    <select required class="form-select" id="typeSki_id" name="typeSki_id">
+      <option value="">Sélectionner le type de ski</option>
+      {% for typeSki in typesSki %}
+      <option value="{{typeSki.id}}">{{typeSki.libelleType}}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="imageSki" class="form-label">Image</label>
+    <input type="text" class="form-control" id="imageSki" name="imageSki" placeholder="Saisir le nom de l'image">
+  </div>
+  <button type="submit" class="btn btn-primary">Valider</button>
+</form>
+{% endblock body %}

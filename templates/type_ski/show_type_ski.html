@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Types de Ski</h1>
+</div>
+{% endblock header %}
+
+{% block body %}
+<a class="btn btn-primary px-4 mb-4" href="/type-ski/add" role="button">Ajouter un type de ski</a>
+<table class="table align-middle">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Libellé</th>
+            <th class="text-end" scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for typeSki in typeSki %}
+        <tr>
+            <th scope="row">{{typeSki.id}}</th>
+            <td>{{typeSki.libelleType}}</td>
+            <td class="text-end">
+                <a class="btn btn-outline-primary" href="/type-ski/edit?id={{typeSki.id}}" role="button">Modifier</a>
+                <a class="btn btn-outline-danger" href="/type-ski/delete?id={{typeSki.id}}" role="button">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock body %}

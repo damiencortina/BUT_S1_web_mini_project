@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Skis</h1>
+</div>
+{% endblock header %}
+
+{% block body %}
+<a class="btn btn-primary px-4 mb-4" href="/ski/add" role="button">Ajouter un modèle de ski</a>
+<table class="table table-sm align-middle">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Modèle</th>
+            <th class="text-center" scope="col">Date d'achat</th>
+            <th class="text-center" scope="col">Etat</th>
+            <th class="text-center" scope="col">Prix d'achat</th>
+            <th class="text-center" scope="col">Prix location</th>
+            <th class="text-center" scope="col">Taille</th>
+            <th class="text-center" scope="col">Type de ski</th>
+            <th class="text-center" scope="col">Image</th>
+            <th class="text-end" scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ski in skis %}
+        <tr>
+            <th scope="row">{{ski.id}}</th>
+            <td>{{ski.modeleSki}}</td>
+            <td class="text-center">{{ski.dateAchat}}</td>
+            <td class="text-center">{{ski.etat}}</td>
+            <td class="text-center">{{ski.prixAchat}}€</td>
+            <td class="text-center">{{ski.prixLocation}}€</td>
+            <td class="text-center">{{ski.taille}}cm</td>
+            <td class="text-center text-danger">{{ski.typeSki_id}}</td>
+            <td><img alt="{{ski.imageSki}}" src="{{ url_for('static', filename='images/'~ski.imageSki) }}"></td>
+            <td class="text-end">
+                <a class="btn btn-outline-primary" href="/ski/edit?id={{ski.id}}" role="button">Modifier</a>
+                <a class="btn btn-outline-danger" href="/ski/delete?id={{ski.id}}" role="button">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock body %}

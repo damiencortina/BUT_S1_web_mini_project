@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sujet 25 : sky / type_ski {% endblock title %}</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='messtyles.css') }}">
+</head>
+
+<body>
+{% include('_nav.html') %}
+<header>
+    {% block header %}
+    <div class="px-4 py-5 text-center">
+        <h1 class="display-5 fw-bold">Skis / Type Ski</h1>
+        <h2 class="display-6">Sujet 25</h2>
+        <p class="text-center mt-4">
+            Par Damien Cortina<br>
+            BUT1 | Groupe A2
+        </p>
+    </div>
+    {% endblock header %}
+</header>
+<main class="mb-5">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for categorie, message in messages %}
+    <div class="alert alert-{{ categorie }}" role="alert">
+        Information : <strong>{{ message }}</strong>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <div class="container">
+        {% block body %}
+        <div class="d-grid gap-3 mx-auto py-5 w-50">
+            <a href="/ski/show" class="btn btn-outline-primary btn-lg">Skis</a>
+            <a href="/type-ski/show" class="btn btn-outline-primary btn-lg">Types de Ski</a>
+            <a href="/ski/filtre" class="btn btn-outline-primary btn-lg">Affichage des Skis (Filtre)</a>
+        </div>
+        {% endblock body %}
+    </div>
+</main>
+<footer class="py-3 my-4 border-top">
+    <p class="text-center text-body-secondary">Sujet 25 : <strong>Ski / Type Ski</strong></p>
+    <p class="text-center text-body-secondary">
+        Damien Cortina<br>
+        BUT1 | Groupe A2
+    </p>
+</footer>
+<script type="module" src="{{ url_for('static', filename='bootstrap/bootstrap.js') }}"></script>
+</body>
+
+</html>

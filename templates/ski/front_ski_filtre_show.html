@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Filtrer les Skis</h1>
+</div>
+{% endblock header %}
+
+{% block body %}
+<div class="row align-items-start">
+    {% for ski in skis %}
+    <div class="col-4">
+        <div class="card mb-4">
+            <img src="{{ url_for('static', filename='images/'~ski.imageSki) }}"
+                 class="card-img-top object-fit-cover custom-card-img pt-1"
+                 alt="{{ski.imageSki}}">
+            <div class="card-body">
+                <p class="card-title"><strong>{{ski.modeleSki}}</strong></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Date d'achat : <strong>{{ski.dateAchat}}</strong></li>
+                <li class="list-group-item">Etat : <strong>{{ski.etat}}</strong></li>
+                <li class="list-group-item">Prix d'achat : <strong>{{ski.prixAchat}}€</strong></li>
+                <li class="list-group-item">Prix de location : <strong>{{ski.prixLocation}}€</strong></li>
+                <li class="list-group-item">Taille : <strong>{{ski.taille}}cm</strong></li>
+                <li class="list-group-item">Type : <strong>{{ski.typeSki_id}}</strong></li>
+            </ul>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock body %}

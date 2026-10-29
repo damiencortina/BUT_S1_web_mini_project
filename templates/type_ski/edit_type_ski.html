@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5">Modifier le Type : <strong>{{typeSki.libelleType}}</strong></h1>
+</div>
+{% endblock header %}
+
+{% block body %}
+<form action="/type-ski/edit" method="post">
+    <input type="hidden" name="id" value="{{typeSki.id}}">
+    <div class="mb-3">
+        <label for="libelleType" class="form-label">Libellé du type de ski</label>
+        <input required type="text" class="form-control" id="libelleType" name="libelleType" placeholder="Saisir le libellé du type de ski"
+               value="{{typeSki.libelleType}}">
+    </div>
+    <button type="submit" class="btn btn-primary">Valider</button>
+</form>
+{% endblock body %}
