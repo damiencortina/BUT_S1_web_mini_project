@@ -132,6 +132,7 @@ def valid_edit_ski():
     flash(message, 'success')
     return redirect('/ski/show')
 
+
 @app.route("/ski/filtre", methods=["GET"])
 def filtre_ski():
     return render_template('ski/front_ski_filtre_show.html', skis=skis)
