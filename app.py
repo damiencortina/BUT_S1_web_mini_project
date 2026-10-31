@@ -135,4 +135,33 @@ def valid_edit_ski():
 
 @app.route("/ski/filtre", methods=["GET"])
 def filtre_ski():
-    return render_template('ski/front_ski_filtre_show.html', skis=skis)
+    return render_template('ski/front_ski_filtre_show.html', skis=skis, typesSki=typeSki)
+
+@app.route('/ski/filtre', methods=['POST'])
+def filtre_article_valid():
+    filter_word = request.form.get('filter_word', None)
+    min_price = request.form.get('min_price', None)
+    max_price = request.form.get('max_price', None)
+    filter_items = request.form.getlist('filter_items')
+    if filter_word and filter_word != "":
+        message = u'Modèles contenant : ' + filter_word
+        flash(message, 'success')
+    if min_price or max_price:
+        val_min=str(min_price).replace(' ', '').replace(',', '.')
+        val_max=str(max_price).replace(' ', '').replace(',', '.')
+        if val_min.replace('.', '', 1).isdigit() and val_max.replace('.', '', 1).isdigit():
+            if float(val_min) < float(val_max):
+                message = u'Prix compris entre : ' +  val_min + "€ et "+ val_max + "€"
+                flash(message, 'success')
+            else:
+                message=u'min < max'
+                flash(message, 'warning')
+        else:
+            message=u'Prix min ('+val_min+') et prix max ('+val_max+') doivent être tous les deux des numériques positifs'
+            flash(message, 'warning')
+    if filter_items and filter_items != []:
+        message=u'Modèles sélectionnés :  '
+        for case in filter_items:
+            message+=' id : '+case+ '  '
+        flash(message, 'success')
+    return redirect('/ski/filtre')

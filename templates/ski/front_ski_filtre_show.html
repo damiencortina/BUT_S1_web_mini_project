@@ -2,11 +2,46 @@
 
 {% block header %}
 <div class="px-4 py-5 my-5 text-center">
-    <h1 class="display-5 fw-bold">Filtrer les Skis</h1>
+    <h1 class="display-5 fw-bold">Filtrer les XXX modèles de skis disponibles</h1>
 </div>
 {% endblock header %}
 
 {% block body %}
+<form class="mb-5" action="/ski/filtre" method="POST">
+    <div class="row">
+        <div class="col">
+            <p class="fw-bold mb-3">Rechercher un modèle :</p>
+            <div>
+                <label for="filter_word" class="form-label">XXX skis dont le nom contient</label>
+                <input type="text" class="form-control" id="filter_word" name="filter_word">
+            </div>
+        </div>
+        <div class="col">
+            <p class="fw-bold mb-3">Rechercher par type :</p>
+            {% for typeSki in typesSki %}
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="{{typeSki.id}}" id="flexCheckDefault"
+                       name="filter_items">
+                <label class="form-check-label" for="flexCheckDefault">
+                    {{typeSki.libelleType}}
+                </label>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col">
+            <p class="fw-bold mb-3">Prix d'achat compris entre :</p>
+            <div class="mb-3">
+                <label for="min_price" class="form-label">Minimum</label>
+                <input type="text" class="form-control" id="min_price" name="min_price">
+            </div>
+            <div class="mb-3">
+                <label for="max_price" class="form-label">Maximum</label>
+                <input type="text" class="form-control" id="max_price" name="max_price">
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Rechercher</button>
+</form>
 <div class="row align-items-start">
     {% for ski in skis %}
     <div class="col-4">
